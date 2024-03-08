@@ -1,5 +1,7 @@
 # A cli for openai api in JS
 
+https://github.com/yahalloe/openai-cli.js/assets/147316835/e5529242-575b-4602-b3fb-f93be0dfea23
+
 # 🛠️ Installation
 
 1. clone the repo.
@@ -27,3 +29,6 @@ if you don't have bun yet, change the `bun` dev script in the `package.json` fil
     "dev": "node script.js"
   },
 ```
+
+
+
