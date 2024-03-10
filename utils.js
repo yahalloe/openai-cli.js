@@ -3,7 +3,8 @@ import fs from 'fs'; // read file
 import chalk from 'chalk';
 
 let filePath = "readCode.txt";
-let defaultSystemMessage = 'You are a helpful assistant and answer concisely.'
+let defaultSystemMessage = 'You are a helpful assistant that answers concisely.'
+let defaultAnimeSystemMessage = 'You are a helpful and cute waifu assistant that answers concisely.'
 let defaultMaxTokens = 80
 
 export const enterMessage = async () => {
@@ -77,6 +78,7 @@ export const getSystemMessage = async () => {
         message: 'change the system model message? (to better fine tune the answer to your wants)\n default: ' + defaultSystemMessage, 
         choices: [
             'no',
+            'waifu',
             'yes',
         ], 
     });
@@ -84,7 +86,7 @@ export const getSystemMessage = async () => {
     if (answer.askIfChangeSystemMessage === 'no') {
         return defaultSystemMessage
         
-    } else {
+    } else if (answer.askIfChangeSystemMessage === 'yes') {
         const answer = await inquirer.prompt({
             name: 'getSytemMessage',
             type: 'input',
@@ -92,6 +94,8 @@ export const getSystemMessage = async () => {
         })
         
         return answer.getSytemMessage
+    } else {
+        return defaultAnimeSystemMessage;
     }
 }
 
