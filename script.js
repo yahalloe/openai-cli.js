@@ -11,13 +11,37 @@ const enterMessage = async () => {
         type: 'input',
         message: `\n${chalk.blueBright('You:')} `,
         default() {
-            return 'Enter message';
+            return 'Enter messages';
         },
     });
 
     return answer.enterMessage;
 };
 
+const getSystemMessage = async () => {
+    const answer = await inquirer.prompt ({
+        name: 'askIfChangeSystemMessage',
+        type: 'list',
+        message: 'change the model? (to better fine tune the answer to your wants)\ndefault: You are a helpful assistant.', 
+        choices: [
+            'yes',
+            'no',
+        ], 
+    });
+
+    if (answer.askIfChangeSystemMessage === 'no') {
+        return 'You are a helpful assistant.'
+        
+    } else {
+        const answer = await inquirer.prompt({
+            name: 'getSytemMessage',
+            type: 'input',
+            message: 'Enter system role message/context: ',
+        })
+        
+        return answer.getSytemMessage
+    }
+}
 const getModel = async () => {
     const answer = await inquirer.prompt({
         name: 'getModel',
@@ -43,8 +67,8 @@ const client = new OpenAI({
 async function main() {
     const selectedModel = await getModel();
     const temperature = 0.3;
-    const max_tokens = 300;
-    const system_message = "You are a helpful assistant.";
+    const max_tokens = 50;
+    const system_message = await getSystemMessage() ;
 
     while (true) {
         const userMessage = await enterMessage(); // Use await to get user input

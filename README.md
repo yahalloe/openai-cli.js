@@ -30,5 +30,3 @@ if you don't have bun yet, change the `bun` dev script in the `package.json` fil
   },
 ```
 
-
-
