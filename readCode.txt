@@ -1,22 +1,73 @@
+is there anything wrong in this code?
+
 import { config } from 'dotenv';
 import OpenAI from 'openai';
 import inquirer from 'inquirer';
 import chalk from 'chalk';
+import fs from 'fs'; // read file
 
 config();
+let filePath = "F:\\chatgpt-ui\\node";
 
 const enterMessage = async () => {
+
+    const question = await inquirer.prompt({
+        name: 'askIfFileOrInput',
+        type: 'list',
+        message: 'read from a file or input?',
+        choices: [
+            'file',
+            'input',
+        ]
+    });
+
+    if (question.askIfFileOrInput === 'file') {
+            try {
+                const code = fs.readFileSync(filePath, 'utf-8');
+                return code;
+            } catch (error) {
+                console.error(`Error reading file: ${error.message}`);
+                process.exit(1);
+            }
+        
+    } else {
+
     const answer = await inquirer.prompt({
         name: 'enterMessage',
         type: 'input',
         message: `\n${chalk.blueBright('You:')} `,
         default() {
-            return 'Enter messages';
+            return 'Enter message';
         },
     });
 
     return answer.enterMessage;
+    }
 };
+
+const getMaxTokens = async () => {
+    const answer = await inquirer.prompt ({
+        name: 'askIfChangeMaxTokens',
+        type: 'list',
+        message: 'change the Max tokens? \ndefault: 80 tokens', 
+        choices: [
+            'yes',
+            'no',
+        ], 
+    });
+
+    if(answer.askIfChangeMaxTokens == 'no') {
+        return 80
+    } else {
+        const answer = await inquirer.prompt({
+            name: 'getMaxTokens',
+            type: 'input',
+            message: 'Enter max tokens: ',
+        })
+
+        return answer.getMaxTokens
+    }
+}
 
 const getSystemMessage = async () => {
     const answer = await inquirer.prompt ({
@@ -65,10 +116,15 @@ const client = new OpenAI({
 });
 
 async function main() {
+    console.clear()
     const selectedModel = await getModel();
     const temperature = 0.3;
-    const max_tokens = 50;
-    const system_message = await getSystemMessage() ;
+    console.clear()
+    const max_tokens = await getMaxTokens();
+    console.clear()
+    const system_message = await getSystemMessage();
+    console.clear()
+
 
     while (true) {
         const userMessage = await enterMessage(); // Use await to get user input

@@ -26,7 +26,7 @@ npm run dev
 if you don't have bun yet, change the `bun` dev script in the `package.json` file to `node`.
 ```json
 "scripts": {
-    "dev": "node script.js"
+    "dev": "node main.js"
   },
 ```
 
