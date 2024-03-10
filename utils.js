@@ -3,8 +3,8 @@ import fs from 'fs'; // read file
 import chalk from 'chalk';
 
 let filePath = "readCode.txt";
-let defaultSystemMessage = 'You are a helpful assistant that answers concisely.'
-let defaultAnimeSystemMessage = 'You are a helpful and cute waifu assistant that answers concisely.'
+let defaultSystemMessage = 'You are a helpful assistant that answers concisely in the given max token to you.'
+let defaultAnimeSystemMessage = 'You are a helpful and cute waifu assistant that answers concisely in the given max token to you.'
 let defaultMaxTokens = 80
 
 export const enterMessage = async () => {
