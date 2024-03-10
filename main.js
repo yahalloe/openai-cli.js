@@ -9,6 +9,16 @@ import {
     getModel, 
 } from './utils.js'
 
+
+/**
+ * 23.10.03
+ * 
+ * @todo: retain chat context
+ * 
+ * @todo: fine tune the inquirer prompt types for
+ * better user experience.
+ */
+
 config();
 
 const client = new OpenAI({
