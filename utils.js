@@ -16,7 +16,7 @@ export const enterMessage = async () => {
         choices: [
             'no',
             'yes',
-            'exit proogram',
+            'exit program',
         ]
     });
 
@@ -58,7 +58,7 @@ export const getMaxTokens = async () => {
         ], 
     });
 
-    if(answer.askIfChangeMaxTokens == 'no') {
+    if(answer.askIfChangeMaxTokens === 'no') {
         return defaultMaxTokens
     } else {
         const answer = await inquirer.prompt({
@@ -92,10 +92,14 @@ export const getSystemMessage = async () => {
             type: 'input',
             message: 'Enter system role message/context: ',
         })
-        
+
+        defaultSystemMessage = answer.getSytemMessage
         return answer.getSytemMessage
+    
     } else {
+
         return defaultAnimeSystemMessage;
+    
     }
 }
 
