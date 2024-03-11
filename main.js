@@ -38,7 +38,7 @@ async function main() {
 
     while (true) {
         const system_message = await getSystemMessage();
-        const userMessage = await enterMessage(); // Use await to get user input
+        const userMessage = await enterMessage(); 
 
         if (userMessage === 'exit') {
             console.log("Exiting program");

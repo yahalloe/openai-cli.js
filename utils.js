@@ -7,6 +7,10 @@ let defaultSystemMessage = 'You are a helpful assistant that answers concisely i
 let defaultAnimeSystemMessage = 'You are a helpful and cute waifu assistant that answers concisely in the given max token to you.'
 let defaultMaxTokens = 80
 
+
+/**
+ * @returns {string} - whether a code or user input from the command like.
+ */
 export const enterMessage = async () => {
 
     const question = await inquirer.prompt({
@@ -47,6 +51,11 @@ export const enterMessage = async () => {
     }
 };
 
+
+/**
+ * @returns {number} - we need to cast and return a number because 
+ * inquirer returns a string and api wants number
+ */
 export const getMaxTokens = async () => {
     const answer = await inquirer.prompt ({
         name: 'askIfChangeMaxTokens',
@@ -71,6 +80,11 @@ export const getMaxTokens = async () => {
     }
 }
 
+
+/**
+ * @returns {string} - returns the user message, whether custom
+ * or the default ones.
+ */
 export const getSystemMessage = async () => {
     const answer = await inquirer.prompt ({
         name: 'askIfChangeSystemMessage',
@@ -103,6 +117,10 @@ export const getSystemMessage = async () => {
     }
 }
 
+/**
+ * @returns {string} - just the model type in string.
+ * all are in turbo to maximize cost efficiency.
+ */
 export const getModel = async () => {
     const answer = await inquirer.prompt({
         name: 'getModel',
