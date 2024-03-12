@@ -9,7 +9,6 @@ import {
     getModel, 
 } from './utils.js'
 
-
 /**
  * 23.10.03
  * 
@@ -17,7 +16,9 @@ import {
  * but the history also consumes the tokens limit tho
  * 
  * @todo: fine tune the inquirer prompt types for
- * better user experience.
+ * better user experience. FINISHED
+ * I think my implementaion of inquirer.js is decent, so no need
+ * to use the native api's that much.
  */
 
 config();
